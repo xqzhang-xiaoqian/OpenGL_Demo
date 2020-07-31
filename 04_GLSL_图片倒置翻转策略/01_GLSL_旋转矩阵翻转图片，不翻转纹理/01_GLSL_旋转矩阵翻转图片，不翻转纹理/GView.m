@@ -1,8 +1,8 @@
 //
 //  GView.m
-//  03_GLSL_加载图片_OC
+//  01_GLSL_旋转矩阵翻转图片，不翻转纹理
 //
-//  Created by 张喜千 on 2020/7/30.
+//  Created by 张喜千 on 2020/7/31.
 //  Copyright © 2020 张喜千. All rights reserved.
 //
 
@@ -64,7 +64,6 @@
 {
     //1.设置清屏颜色
     glClearColor(0.3f, 0.3f, 0.5f, 1);
-    
     //2.清除颜色缓存区
     glClear(GL_COLOR_BUFFER_BIT);
     
@@ -74,9 +73,9 @@
     glViewport(self.frame.origin.x * scale, self.frame.origin.y * scale, self.frame.size.width * scale, self.frame.size.height * scale);
     
     //4.读取顶点着色器，片元着色器
-    NSString *vertFile = [[NSBundle mainBundle] pathForResource:@"shaderv" ofType:@"vsh"];
-    NSString *fragFile = [[NSBundle mainBundle] pathForResource:@"shaderf" ofType:@"fsh"];
-    NSLog(@"vertFile:%@",vertFile);
+    NSString *vertFile = [[NSBundle mainBundle]pathForResource:@"shaderv" ofType:@"vsh"];
+    NSString *fragFile = [[NSBundle mainBundle]pathForResource:@"shaderf" ofType:@"fsh"];
+    NSLog(@"vertFile:%@", vertFile);
     NSLog(@"fragFile:%@", fragFile);
     
     //5. 加载shader
@@ -84,17 +83,18 @@
     
     //6.program链接
     glLinkProgram(self.myPrograme);
-    GLint linkStatus;
+    
     //获取链接状态，并做失败处理
+    GLint linkStatus;
     glGetProgramiv(self.myPrograme, GL_LINK_STATUS, &linkStatus);
     if (linkStatus == GL_FALSE) {
         GLchar message[512];
         glGetProgramInfoLog(self.myPrograme, sizeof(message), 0, &message[0]);
         NSString *messageString = [NSString stringWithUTF8String:message];
-        NSLog(@"Program Link Errlr:%@", messageString);
+        NSLog(@"program link error : %@", messageString);
         return;
     }
-    NSLog(@"Program link success!");
+    NSLog(@"program link success!");
     
     //7.使用program
     glUseProgram(self.myPrograme);
@@ -111,6 +111,7 @@
         -0.5f, 0.3f, -1.0f,     0.0f, 1.0f, //左上
         0.5f, -0.3f, -1.0f,     1.0f, 0.0f, //右下
     };
+    
     
     //9.-----处理顶点数据------
     //1).顶点缓存区
@@ -146,15 +147,15 @@
      参数5：stride,连续顶点属性之间的偏移量，默认为0；
      参数6：指定一个指针，指向数组中的第一个顶点属性的第一个组件。默认为0
      */
-    glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*5, NULL);
+    glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL);
     
     //11.-----处理纹理数据----
     //1).glGetAttribLocation, 用来获取 vertex attribute的入口的
     //注意：第二个参数字符串必须和 shaderv.vsh 中的输入变量：textCoordinate 保持一致
-    GLuint textCoor = glGetAttribLocation(self.myPrograme, "textCoordinate");
+    GLuint textcoor = glGetAttribLocation(self.myPrograme, "textCoordinate");
     
     //2).设置合适的格式从 buffer 里面读取数据
-    glEnableVertexAttribArray(textCoor);
+    glEnableVertexAttribArray(textcoor);
     
     //3).设置读取方式
     /*
@@ -165,7 +166,7 @@
      参数5：stride,连续顶点属性之间的偏移量，默认为0；
      参数6：指定一个指针，指向数组中的第一个顶点属性的第一个组件。默认为0
      */
-    glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*5, (float *)NULL + 3);
+    glVertexAttribPointer(textcoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (float *)NULL + 3);
     
     //12.加载纹理
     [self setupTexture:@"qinxiaoxian"];
@@ -173,12 +174,55 @@
     //13.设置纹理采样器 sampler2D
     glUniform1i(glGetUniformLocation(self.myPrograme, "colorMap"), 0);
     
+    // ------解决纹理倒置------
+    [self rotateTextureImage];
+    
     //14.绘制
     glDrawArrays(GL_TRIANGLES, 0, 6);
     
     //15. 从渲染缓存区显示到屏幕上
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
     
+}
+// 解决纹理倒置
+- (void)rotateTextureImage
+{
+    //注意，想要获取shader里面的变量，这里记得要在glLinkProgram后面，后面，后面！
+    //1. rotate等于shaderv.vsh中的uniform属性，rotateMatrix
+    GLuint rotate = glGetUniformLocation(self.myPrograme, "rotateMatrix");
+    
+    //2.获取旋转的弧度
+    float radians = 180 * 3.14159f / 180.0f;
+    
+    //3.求得弧度对尖的 sin,cos 值
+    float s = sin(radians);
+    float c = cos(radians);
+    
+    //4.因为在3D课程中用的是横向量，在 OpenGL ES 用的是列向量
+    /*
+     参考z轴旋转矩阵
+     */
+    GLfloat zRotation[16] = {
+        c, -s, 0, 0,
+        s, c, 0, 0,
+        0, 0, 1.0, 0,
+        0.0, 0, 0, 1.0,
+    };
+    
+    for (int i = 0; i < 16; ) {
+        NSLog(@"%.1f %.1f %.1f %.1f", zRotation[i], zRotation[i+1], zRotation[i+1], zRotation[i+3]);
+        i += 4;
+    }
+    
+    //5.设置旋转矩阵
+    /*
+     glUniformMatrix4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value)
+     location : 对于shader 中的ID
+     count : 个数
+     transpose : 转置
+     value : 指针
+     */
+    glUniformMatrix4fv(rotate, 1, GL_FALSE, (GLfloat *)&zRotation[0]);
 }
 
 //加载纹理
@@ -194,9 +238,9 @@
     //2.读取图片的大小，宽 和 高
     size_t width = CGImageGetWidth(spriteImage);
     size_t height = CGImageGetHeight(spriteImage);
-    
+        
     //3.获取图片字节数    宽*高*4（RGBA）
-    GLubyte *spriteData = (GLubyte *)calloc(width * height * 4, sizeof(GLubyte));
+    GLubyte *spritedata = (GLubyte *)calloc(width * height * 4, sizeof(GLubyte));
     
     //4.创建上下文 CGContextRef
     /*
@@ -208,7 +252,8 @@
     参数6：colorSpace,bitmap上使用的颜色空间
     参数7：kCGImageAlphaPremultipliedLast：RGBA
     */
-    CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width * 4, CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);
+    CGContextRef spriteContext = CGBitmapContextCreate(spritedata, width, height, 8, width * 4, CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);
+    
     
     //5.在 CGContextRef 上绘制图片
     /*
@@ -236,7 +281,6 @@
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     
-    float fw = width, fh = height;
     //9.载入纹理2D数据
     /*
     参数1：纹理模式，GL_TEXTURE_1D、GL_TEXTURE_2D、GL_TEXTURE_3D
@@ -249,10 +293,11 @@
     参数8：type
     参数9：纹理数据
     */
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+    float fw = width, fh = height;
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spritedata);
     
     //10.释放 spriteData
-    free(spriteData);
+    free(spritedata);
     
     return 0;
 }
@@ -269,7 +314,8 @@
     self.myColorFrameBuffer = buffer;
     
     //3.将标识符绑定到GL_FRAMEBUFFER
-    glBindFramebuffer(GL_FRAMEBUFFER, self.myColorFrameBuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, buffer);
+    
     /*
     生成帧缓存区之后，则需要将 renderbuffer 跟 framebuffer 进行绑定，
     调用glFramebufferRenderbuffer 函数进行绑定到对应的附着点上，后面的绘制才能起作用
@@ -307,11 +353,13 @@
      frame buffer object 即称 FBO.
      render buffer 则又可分为3类。colorBuffer、 depthBuffer、 stencilBuffer(模板缓存区)。
      */
+
     glDeleteBuffers(1, &_myColorRenderBuffer);
     self.myColorRenderBuffer = 0;
     
     glDeleteBuffers(1, &_myColorFrameBuffer);
     self.myColorFrameBuffer = 0;
+
 }
 
 //2.创建图形上下文
@@ -322,9 +370,10 @@
     
     //2.判断是否创建成功
     if (!context) {
-        NSLog(@"Create ES context failed!");
+        NSLog(@"create ES context failed!");
         return;
     }
+    
     
     //3.设置图形上下文
     if (![EAGLContext setCurrentContext:context]) {
@@ -333,6 +382,7 @@
     }
     
     self.myContext = context;
+
 }
 
 //1.创建特殊图层
@@ -345,7 +395,7 @@
     self.myEaglLayer = (CAEAGLLayer *)self.layer;
     
     //2.设置scale
-    [self setContentScaleFactor:[[UIScreen mainScreen]scale]];
+    [self setContentScaleFactor:[[UIScreen mainScreen] scale]];
     
     //3.设置描述属性，这晨设置不维持渲染内容以及颜色格式为RGBA8(绘图表面完成后是否保留其内容，颜色缓冲区格式)
     /*
@@ -358,9 +408,9 @@
          kEAGLColorFormatSRGBA8：sRGB代表了标准的红、绿、蓝，即CRT显示器、LCD显示器、投影机、打印机以及其他设备中色彩再现所使用的三个基本色素。sRGB的色彩空间基于独立的色彩坐标，可以使色彩在不同的设备使用传输中对应于同一个色彩坐标体系，而不受这些设备各自具有的不同色彩坐标的影响。
      */
     self.myEaglLayer.drawableProperties = @{
-                kEAGLDrawablePropertyRetainedBacking:@false,
-                kEAGLDrawablePropertyColorFormat:kEAGLColorFormatRGBA8};
-    
+        kEAGLDrawablePropertyRetainedBacking:@false,
+        kEAGLDrawablePropertyColorFormat:kEAGLColorFormatRGBA8,
+    };
 }
 
 + (Class)layerClass
@@ -374,6 +424,7 @@
 {
     //1.定义2个临时着色器对象  顶点着色器和片元着色器
     GLuint verShader, fragShader;
+    
     //2. 创建program, 创建空的 program
     GLint program = glCreateProgram();
     
@@ -386,16 +437,20 @@
     [self compileShader:&verShader type:GL_VERTEX_SHADER file:vert];
     [self compileShader:&fragShader type:GL_FRAGMENT_SHADER file:frag];
     
+    
     //4.创建最终的程序, 编译好的shader 附着到 program
     glAttachShader(program, verShader);
     glAttachShader(program, fragShader);
     
+    
     //5.释放不需要的shader
     glDeleteShader(verShader);
     glDeleteShader(fragShader);
+    
     //返回program
     return program;
 }
+
 //编译 shader
 - (void)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file
 {
@@ -417,6 +472,6 @@
     
     //把着色器源代码编译成目标代码
     glCompileShader(*shader);
-    
 }
+
 @end
