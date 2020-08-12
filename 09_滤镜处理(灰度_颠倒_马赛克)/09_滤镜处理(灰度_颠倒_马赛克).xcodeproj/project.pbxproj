@@ -14,6 +14,21 @@
 		8F3D93BD24E3D39400BEB87F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93BC24E3D39400BEB87F /* Assets.xcassets */; };
 		8F3D93C024E3D39400BEB87F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93BE24E3D39400BEB87F /* LaunchScreen.storyboard */; };
 		8F3D93C324E3D39400BEB87F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D93C224E3D39400BEB87F /* main.m */; };
+		8F3D93D724E3D43900BEB87F /* kunkun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93D624E3D43900BEB87F /* kunkun.jpg */; };
+		8F3D93DD24E3D45100BEB87F /* FilterBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D93D924E3D45100BEB87F /* FilterBarCell.m */; };
+		8F3D93DE24E3D45100BEB87F /* FilterBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D93DA24E3D45100BEB87F /* FilterBar.m */; };
+		8F3D93E424E3D5C500BEB87F /* Normal.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93E324E3D5C500BEB87F /* Normal.vsh */; };
+		8F3D93E824E3D5DC00BEB87F /* Normal.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93E724E3D5DC00BEB87F /* Normal.fsh */; };
+		8F3D93EA24E3D68000BEB87F /* Gray.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93E924E3D68000BEB87F /* Gray.vsh */; };
+		8F3D93EC24E3D68A00BEB87F /* Gray.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93EB24E3D68A00BEB87F /* Gray.fsh */; };
+		8F3D93EE24E3D6BB00BEB87F /* Resersal.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93ED24E3D6BB00BEB87F /* Resersal.fsh */; };
+		8F3D93F024E3D6CA00BEB87F /* Resersal.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93EF24E3D6CA00BEB87F /* Resersal.vsh */; };
+		8F3D93F324E3D6DF00BEB87F /* Mosaic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93F224E3D6DF00BEB87F /* Mosaic.fsh */; };
+		8F3D93F524E3D6E500BEB87F /* Mosaic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93F424E3D6E500BEB87F /* Mosaic.vsh */; };
+		8F3D93F824E3D6FF00BEB87F /* HexagonMosaic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93F724E3D6FF00BEB87F /* HexagonMosaic.fsh */; };
+		8F3D93FA24E3D70600BEB87F /* HexagonMosaic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93F924E3D70600BEB87F /* HexagonMosaic.vsh */; };
+		8F3D93FD24E3D72300BEB87F /* TriangularMosaic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93FC24E3D72300BEB87F /* TriangularMosaic.fsh */; };
+		8F3D93FF24E3D72A00BEB87F /* TriangularMosaic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D93FE24E3D72A00BEB87F /* TriangularMosaic.vsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +44,23 @@
 		8F3D93BF24E3D39400BEB87F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F3D93C124E3D39400BEB87F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F3D93C224E3D39400BEB87F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8F3D93D624E3D43900BEB87F /* kunkun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kunkun.jpg; sourceTree = "<group>"; };
+		8F3D93D924E3D45100BEB87F /* FilterBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBarCell.m; sourceTree = "<group>"; };
+		8F3D93DA24E3D45100BEB87F /* FilterBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBar.m; sourceTree = "<group>"; };
+		8F3D93DB24E3D45100BEB87F /* FilterBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBarCell.h; sourceTree = "<group>"; };
+		8F3D93DC24E3D45100BEB87F /* FilterBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBar.h; sourceTree = "<group>"; };
+		8F3D93E324E3D5C500BEB87F /* Normal.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Normal.vsh; sourceTree = "<group>"; };
+		8F3D93E724E3D5DC00BEB87F /* Normal.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Normal.fsh; sourceTree = "<group>"; };
+		8F3D93E924E3D68000BEB87F /* Gray.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Gray.vsh; sourceTree = "<group>"; };
+		8F3D93EB24E3D68A00BEB87F /* Gray.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Gray.fsh; sourceTree = "<group>"; };
+		8F3D93ED24E3D6BB00BEB87F /* Resersal.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Resersal.fsh; sourceTree = "<group>"; };
+		8F3D93EF24E3D6CA00BEB87F /* Resersal.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Resersal.vsh; sourceTree = "<group>"; };
+		8F3D93F224E3D6DF00BEB87F /* Mosaic.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Mosaic.fsh; sourceTree = "<group>"; };
+		8F3D93F424E3D6E500BEB87F /* Mosaic.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Mosaic.vsh; sourceTree = "<group>"; };
+		8F3D93F724E3D6FF00BEB87F /* HexagonMosaic.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = HexagonMosaic.fsh; sourceTree = "<group>"; };
+		8F3D93F924E3D70600BEB87F /* HexagonMosaic.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = HexagonMosaic.vsh; sourceTree = "<group>"; };
+		8F3D93FC24E3D72300BEB87F /* TriangularMosaic.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = TriangularMosaic.fsh; sourceTree = "<group>"; };
+		8F3D93FE24E3D72A00BEB87F /* TriangularMosaic.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = TriangularMosaic.vsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +93,15 @@
 		8F3D93AF24E3D39400BEB87F /* 09_滤镜处理(灰度_颠倒_马赛克) */ = {
 			isa = PBXGroup;
 			children = (
+				8F3D93DF24E3D4B600BEB87F /* Filter */,
+				8F3D93D824E3D45100BEB87F /* Tool */,
 				8F3D93B024E3D39400BEB87F /* AppDelegate.h */,
 				8F3D93B124E3D39400BEB87F /* AppDelegate.m */,
 				8F3D93B324E3D39400BEB87F /* SceneDelegate.h */,
 				8F3D93B424E3D39400BEB87F /* SceneDelegate.m */,
 				8F3D93B624E3D39400BEB87F /* ViewController.h */,
 				8F3D93B724E3D39400BEB87F /* ViewController.m */,
+				8F3D93D624E3D43900BEB87F /* kunkun.jpg */,
 				8F3D93B924E3D39400BEB87F /* Main.storyboard */,
 				8F3D93BC24E3D39400BEB87F /* Assets.xcassets */,
 				8F3D93BE24E3D39400BEB87F /* LaunchScreen.storyboard */,
@@ -74,6 +109,84 @@
 				8F3D93C224E3D39400BEB87F /* main.m */,
 			);
 			path = "09_滤镜处理(灰度_颠倒_马赛克)";
+			sourceTree = "<group>";
+		};
+		8F3D93D824E3D45100BEB87F /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D93D924E3D45100BEB87F /* FilterBarCell.m */,
+				8F3D93DA24E3D45100BEB87F /* FilterBar.m */,
+				8F3D93DB24E3D45100BEB87F /* FilterBarCell.h */,
+				8F3D93DC24E3D45100BEB87F /* FilterBar.h */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		8F3D93DF24E3D4B600BEB87F /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D93FB24E3D70B00BEB87F /* TriangularMosaic */,
+				8F3D93F624E3D6E900BEB87F /* HexagonMosaic */,
+				8F3D93F124E3D6CE00BEB87F /* Mosaic */,
+				8F3D93E124E3D4C100BEB87F /* Reversal */,
+				8F3D93E224E3D4D000BEB87F /* Gray */,
+				8F3D93E024E3D4BC00BEB87F /* Normal */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		8F3D93E024E3D4BC00BEB87F /* Normal */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D93E724E3D5DC00BEB87F /* Normal.fsh */,
+				8F3D93E324E3D5C500BEB87F /* Normal.vsh */,
+			);
+			path = Normal;
+			sourceTree = "<group>";
+		};
+		8F3D93E124E3D4C100BEB87F /* Reversal */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D93ED24E3D6BB00BEB87F /* Resersal.fsh */,
+				8F3D93EF24E3D6CA00BEB87F /* Resersal.vsh */,
+			);
+			path = Reversal;
+			sourceTree = "<group>";
+		};
+		8F3D93E224E3D4D000BEB87F /* Gray */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D93EB24E3D68A00BEB87F /* Gray.fsh */,
+				8F3D93E924E3D68000BEB87F /* Gray.vsh */,
+			);
+			path = Gray;
+			sourceTree = "<group>";
+		};
+		8F3D93F124E3D6CE00BEB87F /* Mosaic */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D93F224E3D6DF00BEB87F /* Mosaic.fsh */,
+				8F3D93F424E3D6E500BEB87F /* Mosaic.vsh */,
+			);
+			path = Mosaic;
+			sourceTree = "<group>";
+		};
+		8F3D93F624E3D6E900BEB87F /* HexagonMosaic */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D93F724E3D6FF00BEB87F /* HexagonMosaic.fsh */,
+				8F3D93F924E3D70600BEB87F /* HexagonMosaic.vsh */,
+			);
+			path = HexagonMosaic;
+			sourceTree = "<group>";
+		};
+		8F3D93FB24E3D70B00BEB87F /* TriangularMosaic */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D93FC24E3D72300BEB87F /* TriangularMosaic.fsh */,
+				8F3D93FE24E3D72A00BEB87F /* TriangularMosaic.vsh */,
+			);
+			path = TriangularMosaic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,9 +246,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F3D93F024E3D6CA00BEB87F /* Resersal.vsh in Resources */,
+				8F3D93EE24E3D6BB00BEB87F /* Resersal.fsh in Resources */,
+				8F3D93E824E3D5DC00BEB87F /* Normal.fsh in Resources */,
+				8F3D93EA24E3D68000BEB87F /* Gray.vsh in Resources */,
+				8F3D93EC24E3D68A00BEB87F /* Gray.fsh in Resources */,
+				8F3D93FD24E3D72300BEB87F /* TriangularMosaic.fsh in Resources */,
+				8F3D93E424E3D5C500BEB87F /* Normal.vsh in Resources */,
+				8F3D93F324E3D6DF00BEB87F /* Mosaic.fsh in Resources */,
+				8F3D93FF24E3D72A00BEB87F /* TriangularMosaic.vsh in Resources */,
 				8F3D93C024E3D39400BEB87F /* LaunchScreen.storyboard in Resources */,
+				8F3D93D724E3D43900BEB87F /* kunkun.jpg in Resources */,
+				8F3D93F524E3D6E500BEB87F /* Mosaic.vsh in Resources */,
+				8F3D93FA24E3D70600BEB87F /* HexagonMosaic.vsh in Resources */,
 				8F3D93BD24E3D39400BEB87F /* Assets.xcassets in Resources */,
 				8F3D93BB24E3D39400BEB87F /* Main.storyboard in Resources */,
+				8F3D93F824E3D6FF00BEB87F /* HexagonMosaic.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +275,8 @@
 				8F3D93B824E3D39400BEB87F /* ViewController.m in Sources */,
 				8F3D93B224E3D39400BEB87F /* AppDelegate.m in Sources */,
 				8F3D93C324E3D39400BEB87F /* main.m in Sources */,
+				8F3D93DE24E3D45100BEB87F /* FilterBar.m in Sources */,
+				8F3D93DD24E3D45100BEB87F /* FilterBarCell.m in Sources */,
 				8F3D93B524E3D39400BEB87F /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

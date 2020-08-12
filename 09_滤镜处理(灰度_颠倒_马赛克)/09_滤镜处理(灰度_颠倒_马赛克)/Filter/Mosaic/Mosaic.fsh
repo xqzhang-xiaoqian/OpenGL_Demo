@@ -1,10 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
-    </dependencies>
-    <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-    </objects>
-</document>
+precision highp float;
+uniform sampler2D Texture;
+varying vec2 TextureCoordsVarying;
+
+const vec2 TexSize = vec2(400.0, 400.0);
+const vec2 mosaicSize = vec2(8.0, 8.0);
+
+void main (void) {
+    
+    vec2 intXY = vec2(TextureCoordsVarying.x * TexSize.x, TextureCoordsVarying.y * TexSize.y);
+    
+    vec2 XYMosaic = vec2(floor(intXY.x/mosaicSize.x)*mosaicSize.x, floor(intXY.y/mosaicSize.y)*mosaicSize.y);
+    
+    vec2 UVMosaic = vec2(XYMosaic.x/TexSize.x, XYMosaic.y/TexSize.y);
+    
+    vec4 color = texture2D(Texture, UVMosaic);
+
+    gl_FragColor = color;
+}
