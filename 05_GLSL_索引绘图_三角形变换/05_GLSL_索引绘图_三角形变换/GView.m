@@ -193,6 +193,8 @@
     glEnable(GL_CULL_FACE);
     
     //16.使用索引绘图
+    //参数2：绘图个数
+    //参数3：类型
     glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(indices[0]), GL_UNSIGNED_INT, indices);
     
     //17.要求本地窗口系统显示OpenGL ES 渲染<目标>

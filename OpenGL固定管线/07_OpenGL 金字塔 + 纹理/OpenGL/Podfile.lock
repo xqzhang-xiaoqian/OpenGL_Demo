@@ -1,0 +1,21 @@
+PODS:
+  - GL (1.0)
+  - GLTools (1.0)
+
+DEPENDENCIES:
+  - GL (from `libs/GL`)
+  - GLTools (from `libs/GLTools`)
+
+EXTERNAL SOURCES:
+  GL:
+    :path: libs/GL
+  GLTools:
+    :path: libs/GLTools
+
+SPEC CHECKSUMS:
+  GL: 5070abe9c6b848e3bba2f0c6a0d6ec4ed88745ce
+  GLTools: 847b5060c64dbe758f844ccee1aae7302e31dcfa
+
+PODFILE CHECKSUM: f7ca0ae68f656a6ecf0ca65df952a20942bf6ac2
+
+COCOAPODS: 1.7.2

@@ -109,6 +109,7 @@
     self.myEffect.transform.projectionMatrix = projectionMatrix;
     
     //模型视图
+    //单元矩阵进行平移
     GLKMatrix4 modelViewMatrix = GLKMatrix4Translate(GLKMatrix4Identity, 0.0f, 0.0f, -2.0f);
     self.myEffect.transform.modelviewMatrix = modelViewMatrix;
     
